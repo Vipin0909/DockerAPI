@@ -17,13 +17,13 @@ import pojo.TestLaptopDummy;
 import section11.AddLaptopbyMAP;
 import section11.Location;
 
-public class StepDefination {
+public class AddLaptop {
 
 	AddLaptopbyMAP a = new AddLaptopbyMAP();
 	HashMap<String, Object> map1 = new HashMap<String, Object>();
 	ExcelDataDriven d = new ExcelDataDriven();
 	
-	String requestPostData;
+	public static String requestPostData;
 	public static String id;
 
 	@Given("add laptop Payload")
@@ -69,6 +69,7 @@ public class StepDefination {
 					
 		
 		RestAssured.baseURI = "http://localhost:3000";
+		RestAssured.baseURI = "http://3.137.158.93:8080";
 
 	}
 
@@ -78,26 +79,28 @@ public class StepDefination {
 		String requestPostData = given().log().all().header("Content-Type", "application/json").body(map1).when()
 				.post("/posts/seri").then().assertThat().statusCode(200).extract().response().asString();
 		System.out.println("---------------POST Request-------------" + requestPostData);
+		
+		// Covert to JSON 
+				JsonPath js = new JsonPath(requestPostData); 
+				id =  js.getString("_id");
+				  
+				System.out.println("This id will be used to get the data from this request: " + id);
+				  
 
 	}
 
 	@Then("API call got success")
 	public void api_call_got_success_and_return_a_success_code_as() {
-
 		
-		/*
-		 * // Covert to JSON JsonPath js = new JsonPath(requestPostData); id =
-		 * js.getString("_id");
-		 * System.out.println("This id will be used to get the data from this request: "
-		 * + id);
-		 */
-		/*
-		 * // GET data - DeSerialization AddPlace responseGetData= TestLaptopDummy
-		 * responseGetData = given().log().all().pathParam("id",
-		 * id).expect().defaultParser(Parser.JSON).
-		 * when().get("posts/getsiridata/{id}").then().log().all().assertThat().
-		 * statusCode(200).extract().response().as(TestLaptopDummy.class);
-		 */
+		// GET data - DeSerialization 
+		TestLaptopDummy  responseGetData = given().log().all().pathParam("id",
+		  id).expect().defaultParser(Parser.JSON).
+		  when().get("posts/getsiridata/{id}").then().log().all().assertThat().
+		  statusCode(200).extract().response().as(TestLaptopDummy.class);
+		
+		System.out.println(a.getLaptop());
+		
+		  
 
 	}
 

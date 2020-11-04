@@ -1,0 +1,65 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2020-11-04T12:51:22.358Z",
+        "line": 4,
+        "name": "Verify that user can add laptop details into database",
+        "description": "",
+        "id": "add-laptop-data-into-database;verify-that-user-can-add-laptop-details-into-database",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1081000000,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "add laptop Payload",
+            "match": {
+              "location": "stepDefinations.AddLaptop.add_laptop_payload()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2813000000,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "user called AddLaptopAPI with Post http request",
+            "match": {
+              "location": "stepDefinations.AddLaptop.user_called_with_post_http_request()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 177000000,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "API call got success",
+            "match": {
+              "location": "stepDefinations.AddLaptop.api_call_got_success_and_return_a_success_code_as()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@createuser"
+          }
+        ]
+      }
+    ],
+    "name": "Add Laptop data into database",
+    "description": "",
+    "id": "add-laptop-data-into-database",
+    "keyword": "Feature",
+    "uri": "file:src/test/java/features/AACreateUser.feature",
+    "tags": []
+  }
+]
