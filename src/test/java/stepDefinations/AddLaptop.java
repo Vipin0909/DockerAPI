@@ -11,11 +11,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
+import io.restassured.specification.RequestSpecification;
 import pojo.TestLaptopDummy;
-import section11.AddLaptopbyMAP;
-import section11.Location;
+import section11.INTERVIEW.AddLaptopbyMAP;
+import section11.INTERVIEW.Location;
 
 public class AddLaptop {
 
@@ -25,6 +27,9 @@ public class AddLaptop {
 
 	public static String requestPostData;
 	public static String id;
+	
+	
+	RequestSpecBuilder requestSpec = new RequestSpecBuilder().setBaseUri("http://localhost:3000");
 
 	@Given("laptop details to insert records into database")
 	public void add_laptop_payload() throws IOException {

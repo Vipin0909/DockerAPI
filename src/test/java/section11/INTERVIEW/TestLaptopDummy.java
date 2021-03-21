@@ -1,4 +1,6 @@
-package section11;
+package section11.INTERVIEW;
+
+// scenario for interview
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -42,7 +44,7 @@ public class TestLaptopDummy {
 		l.setState("MAHARASHTRA");
 		a.setLocation(l);
 				
-		// add laptopn
+		// add laptop
 		ArrayList<HashMap<String,Object>> laptop = new ArrayList<HashMap<String,Object>>();
 		
 		HashMap<String,Object> list1 = new HashMap<String,Object>();
@@ -88,7 +90,15 @@ public class TestLaptopDummy {
 		 when().get("posts/getsiridata/{id}").then().log().all().assertThat().
 		 statusCode(200).extract().response().as(TestLaptopDummy.class);
 		String name = a.getName();
-		System.out.println("---------------GET Response-------------" + a.getLaptop());
+		System.out.println("---------------GET Response-------------" + a.getLaptop().get(0));
+		System.out.println("Get location"+ l.getCity().toString());
+		
+		ArrayList<HashMap<String, Object>> laptoplist = a.getLaptop();
+		
+		System.out.println(laptoplist.size());
+		
+		
+		
 		
 	/*	// Write data to excel
 		XSSFWorkbook workbook = new XSSFWorkbook();
